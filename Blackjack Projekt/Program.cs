@@ -35,8 +35,8 @@ namespace Blackjack_Projekt
 
             while (!isEnded)
             {
-                if (gameStatus.getGameplayMusic() != "None" && !audioPlayer.IsPlaying)
-                    audioPlayer.StartMusicLooping();
+                //if (gameStatus.getGameplayMusic() != "None" && !audioPlayer.IsPlaying)
+                //    audioPlayer.StartMusicLooping();
               
                 List<string> options = new List<string>() { "Hit", "Stand", "Double" };
                 string message = null;
@@ -133,7 +133,8 @@ namespace Blackjack_Projekt
                 {                   
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
-                    audioPlayer.StopMusic();
+                    if (gameStatus.getGameplayMusic() != "None")
+                        audioPlayer.StartMusicLooping();
                     MakeBet(menu, gameStatus, player);
                     isEnded = false;
                 }

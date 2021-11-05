@@ -11,7 +11,7 @@ namespace Blackjack_Projekt_Logic_Layer.Models
     {
         public List<Card> Deck { get; set; }
         public string[] AvailableDealerLimits { get; } = { "16", "17", "18" };
-        public string[] AvailableGameplayMusic { get; } = { "GameplayClassicalTheme.wav", "GameplayRockTheme.wav", "GameplayTrapTheme.wav", "None" };
+        public string[] AvailableGameplayMusic { get; } = { "GameplayClassicalTheme.wav", "GameplayRockTheme.wav", "GameplayHipHopTheme.wav", "None" };
         public string[] AvailableInsurancePayments { get; } = { "1,5:1", "2:1", "2,5:1" };
         public string[] AvailableWinPayouts { get; } = { "1,5:1", "2:1", "2,5:1", "3:1" };
         public string[] AvailableDeckQuantities { get; } = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };

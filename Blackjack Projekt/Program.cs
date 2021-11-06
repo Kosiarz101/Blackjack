@@ -97,23 +97,44 @@ namespace Blackjack_Projekt
                     switch (selectedOption)
                     {
                         case 0:
-                            player.AddToHand(gameStatus);
-                            isEnded = CheckState(menu, gameStatus, player, dealer);
+                            try
+                            {
+                                player.AddToHand(gameStatus);
+                                isEnded = CheckState(menu, gameStatus, player, dealer);
+                            }
+                            catch (ArgumentOutOfRangeException e)
+                            {
+                                EndGame(menu, gameStatus, player);
+                            }                           
                             break;
                         case 1:
                             bool isPlayerBlackjack = player.Points == 21 ? true : false;
-                            isEnded = DealerMove(menu, gameStatus, player, dealer, isPlayerBlackjack);
+                            try
+                            {
+                                isEnded = DealerMove(menu, gameStatus, player, dealer, isPlayerBlackjack);
+                            }
+                            catch (ArgumentOutOfRangeException e)
+                            {
+                                EndGame(menu, gameStatus, player);
+                            }                           
                             break;
                         case 2:
-                            player.AddToHand(gameStatus);
-                            if (!player.MakeBet(player.Bet))
+                            try
                             {
-                                Console.WriteLine("You don't have enough money to double the bet");
+                                player.AddToHand(gameStatus);
+                                if (!player.MakeBet(player.Bet))
+                                {
+                                    Console.WriteLine("You don't have enough money to double the bet");
+                                }
+                                isEnded = CheckState(menu, gameStatus, player, dealer);
+                                if (!isEnded)
+                                {
+                                    isEnded = DealerMove(menu, gameStatus, player, dealer, false);
+                                }
                             }
-                            isEnded = CheckState(menu, gameStatus, player, dealer);
-                            if (!isEnded)
+                            catch (ArgumentOutOfRangeException e)
                             {
-                                isEnded = DealerMove(menu, gameStatus, player, dealer, false);
+                                EndGame(menu, gameStatus, player);
                             }
                             break;
                         case 3:
@@ -191,15 +212,7 @@ namespace Blackjack_Projekt
             {
                 while (dealer.Points <= dealer.DealerLimit && dealer.Points <= player.Points)
                 {
-                    try
-                    {
-                        dealer.AddToHand(gameStatus);
-                    }
-                    catch(ArgumentOutOfRangeException e)
-                    {
-                        EndGame(menu, gameStatus, player);
-                        return true;
-                    }
+                    dealer.AddToHand(gameStatus);
                     Console.Clear();
                     if (dealer.Points > 21)
                         dealer.SearchForAs();
@@ -314,14 +327,13 @@ namespace Blackjack_Projekt
             string[] dates = AppManager.GetSaveDates();
             string[] options = { "Save Slot 1", "Save Slot 2", "Save Slot 3" };           
             int selectedOption = 0;
-            int cursorPosition = Console.CursorTop;
+            int cursorPosition;
             ConsoleKey keyEntered;
 
             while (true)
             {
                 string[] optionsDates = { $"{dates[0]}", $"{dates[1]}", $"{dates[2]}" };
 
-                Console.Clear();
                 menu.ShowGameplayTitle(player, gameStatus);
                 cursorPosition = Console.CursorTop;
                 do
@@ -354,10 +366,6 @@ namespace Blackjack_Projekt
 
                 }
             }
-        }
-        public static void PlayerLost(Menu menu, GameStatus gameStatus)
-        {
-            Console.WriteLine("Unfortunately, you lost the game. Better luck next time.");
         }
         public static void TitleMenu(Menu menu, GameStatus gameStatus)
         {
@@ -438,7 +446,6 @@ namespace Blackjack_Projekt
             {
                 string[] optionsDates = { $"{dates[0]}", $"{dates[1]}", $"{dates[2]}" };
 
-                Console.Clear();
                 menu.ShowTitle();
                 cursorPosition = Console.CursorTop;
                 do

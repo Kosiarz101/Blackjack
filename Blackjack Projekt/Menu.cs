@@ -211,12 +211,10 @@ namespace Blackjack_Projekt
         }
         public void ShowCredits()
         {
-            string fileName = "Credits.txt";
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
             string pathTxt = Path.Combine(path, "Blackjack Projekt Logic Layer/Credits/Credits.txt");
 
             string[] credits = File.ReadAllLines(pathTxt);
-            string[] title = new string[11];
             Console.WriteLine("");
             Console.WriteLine("");
             for(int i=0; i<credits.Length; i++)

@@ -7,6 +7,7 @@ using System.Media;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blackjack_Projekt_Logic_Layer;
 
 namespace Blackjack_Projekt
 {
@@ -228,8 +229,7 @@ namespace Blackjack_Projekt
         }
         public void ShowCredits()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string pathTxt = Path.Combine(path, "Blackjack Projekt Logic Layer/Credits/Credits.txt");
+            string pathTxt = AppManager.getPath("Credits/Credits.txt");
 
             string[] credits = File.ReadAllLines(pathTxt);
             Console.WriteLine("");

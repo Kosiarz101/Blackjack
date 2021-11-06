@@ -197,7 +197,7 @@ namespace Blackjack_Projekt_Logic_Layer
             rankings = JsonConvert.DeserializeObject<List<RankingModel>>(File.ReadAllText(pathJson), jsonSettings);
             return rankings;
         }
-        private static string getPath(string filePath)
+        public static string getPath(string filePath)
         {
             string appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(appPath, filePath);

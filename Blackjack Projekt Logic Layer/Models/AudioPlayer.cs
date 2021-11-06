@@ -16,7 +16,7 @@ namespace Blackjack_Projekt_Logic_Layer.Models
         public AudioPlayer(string fileName)
         {
             FileName = fileName;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Sounds");
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds");
             string finalPath = Path.Combine(path, fileName);
             Player = new SoundPlayer(finalPath);
         }
@@ -33,7 +33,7 @@ namespace Blackjack_Projekt_Logic_Layer.Models
         public void StartDifferentMusic(string fileName)
         {
             FileName = fileName;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Sounds");
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds");
             string finalPath = Path.Combine(path, fileName);
             Player.SoundLocation = finalPath;
             Player.Play();

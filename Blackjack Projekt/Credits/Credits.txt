@@ -1,0 +1,28 @@
+Blackjack Project
+
+Lead Producer
+Kamil Łozowski
+
+Game Director
+Kamil Łozowski
+
+Art Director
+Kamil Łozowski
+
+Technical Producer
+Kamil Łozowski
+
+AI Programmer
+Kamil Łozowski
+
+UI Designer
+Kamil Łozowski
+
+Level Designer
+Kamil Łozowski
+
+Audio
+Royalty free music by various authors
+
+Game created in C# Console Application Visual Studio 2019
+All Rights Reserved

@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="RankingFile\Ranking.json" />
-    <None Include="SaveFiles\saveSlot1.json" />
-    <None Include="SaveFiles\saveSlot2.json" />
-    <None Include="SaveFiles\saveSlot3.json" />
+    <Content Include="RankingFile\Ranking.json" />
+    <Content Include="SaveFiles\saveSlot1.json" />
+    <Content Include="SaveFiles\saveSlot2.json" />
+    <Content Include="SaveFiles\saveSlot3.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Credits\Credits.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

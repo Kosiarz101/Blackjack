@@ -1,0 +1,227 @@
+{
+  "PlayerHand": [
+    {
+      "Name": "4",
+      "Value": 4
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    }
+  ],
+  "Money": 801.0,
+  "Bet": 199.0,
+  "InsurannceBet": 0.0,
+  "PlayerPoints": 6,
+  "DealerHand": [
+    {
+      "Name": "queen",
+      "Value": 10
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    }
+  ],
+  "DealerPoints": 20,
+  "Deck": [
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "king",
+      "Value": 10
+    },
+    {
+      "Name": "4",
+      "Value": 4
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "queen",
+      "Value": 10
+    },
+    {
+      "Name": "king",
+      "Value": 10
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "queen",
+      "Value": 10
+    },
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "5",
+      "Value": 5
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "5",
+      "Value": 5
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    },
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    },
+    {
+      "Name": "queen",
+      "Value": 10
+    },
+    {
+      "Name": "4",
+      "Value": 4
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "king",
+      "Value": 10
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "4",
+      "Value": 4
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "king",
+      "Value": 10
+    },
+    {
+      "Name": "5",
+      "Value": 5
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "5",
+      "Value": 5
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    }
+  ],
+  "InitialMoney": 1000.0,
+  "DeckQuantity": 0,
+  "DealerLimit": 0,
+  "InsurancePayment": 0,
+  "WinPayout": 0,
+  "SaveTime": "2021-11-01T19:42:09.3726002+01:00"
+}

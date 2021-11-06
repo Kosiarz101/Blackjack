@@ -1,0 +1,182 @@
+{
+  "PlayerHand": [
+    {
+      "Name": "queen",
+      "Value": 10
+    },
+    {
+      "Name": "queen",
+      "Value": 10
+    }
+  ],
+  "Money": 1110.50,
+  "Bet": 100.0,
+  "PlayerPoints": 20,
+  "DealerHand": [
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    }
+  ],
+  "DealerPoints": 15,
+  "Deck": [
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "queen",
+      "Value": 10
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "king",
+      "Value": 10
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    },
+    {
+      "Name": "4",
+      "Value": 4
+    },
+    {
+      "Name": "as",
+      "Value": 11
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    },
+    {
+      "Name": "jack",
+      "Value": 10
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "4",
+      "Value": 4
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    },
+    {
+      "Name": "9",
+      "Value": 9
+    },
+    {
+      "Name": "7",
+      "Value": 7
+    },
+    {
+      "Name": "5",
+      "Value": 5
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "5",
+      "Value": 5
+    },
+    {
+      "Name": "10",
+      "Value": 10
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "3",
+      "Value": 3
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "8",
+      "Value": 8
+    },
+    {
+      "Name": "6",
+      "Value": 6
+    },
+    {
+      "Name": "king",
+      "Value": 10
+    },
+    {
+      "Name": "2",
+      "Value": 2
+    }
+  ],
+  "InitialMoney": 1000.0,
+  "DeckQuantity": 0,
+  "DealerLimit": 0,
+  "InsurancePayment": 0,
+  "WinPayout": 0,
+  "SaveTime": "2021-10-27T00:40:40.7143226+02:00"
+}

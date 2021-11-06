@@ -120,13 +120,13 @@ namespace Blackjack_Projekt_Logic_Layer
             switch (saveSlot)
             {
                 case 0:
-                    dataFromFile = File.ReadAllText("../Blackjack Projekt Logic Layer/SaveFiles/saveSlot1.json");
+                    dataFromFile = File.ReadAllText("SaveFiles/saveSlot1.json");
                     break;
                 case 1:
-                    dataFromFile = File.ReadAllText("../Blackjack Projekt Logic Layer/SaveFiles/saveSlot2.json");
+                    dataFromFile = File.ReadAllText("SaveFiles/saveSlot2.json");
                     break;
                 case 2:
-                    dataFromFile = File.ReadAllText("../Blackjack Projekt Logic Layer/SaveFiles/saveSlot3.json");
+                    dataFromFile = File.ReadAllText("SaveFiles/saveSlot3.json");
                     break;
 
             }
@@ -149,8 +149,8 @@ namespace Blackjack_Projekt_Logic_Layer
         }
         public static string[] GetSaveDates()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string pathJson = Path.Combine(path, "Blackjack Projekt Logic Layer/SaveFiles/saveSlot");
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string pathJson = Path.Combine(path, "SaveFiles/saveSlot");
             string[] dates = new string[3];
             for(int i=0; i<3; i++)
             {
@@ -161,8 +161,8 @@ namespace Blackjack_Projekt_Logic_Layer
         public static void SaveToRanking(GameStatus gameStatus, Player player)
         {
             List<RankingModel> rankings = new List<RankingModel>();          
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string pathJson = Path.Combine(path, "Blackjack Projekt Logic Layer/RankingFile/Ranking.json");
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string pathJson = Path.Combine(path, "RankingFile/Ranking.json");
 
             rankings = isAnyEntry(pathJson);
 
@@ -179,8 +179,9 @@ namespace Blackjack_Projekt_Logic_Layer
         }
         public static List<RankingModel> LoadFromRanking()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string pathJson = Path.Combine(path, "Blackjack Projekt Logic Layer/RankingFile/Ranking.json");
+            //string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string pathJson = Path.Combine(path, "RankingFile/Ranking.json");
             List<RankingModel> rankings = isAnyEntry(pathJson);
             return rankings;
         }

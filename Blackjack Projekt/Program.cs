@@ -15,9 +15,10 @@ namespace Blackjack_Projekt
     {
         static void Main(string[] args)
         {
+            //Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
             Menu menu = new Menu();
             GameStatus gameStatus = new GameStatus();
-            
+
             menu.ShowTitle();
             TitleMenu(menu, gameStatus);
             menu.ShowTitle();

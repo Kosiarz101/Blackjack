@@ -31,13 +31,10 @@ namespace Blackjack_Projekt
 
             if (player.Bet == 0)
                 MakeBet(menu, gameStatus, player);         
-            bool isEnded = false;           
+            bool isRoundEnded = false;           
 
-            while (!isEnded)
-            {
-                //if (gameStatus.getGameplayMusic() != "None" && !audioPlayer.IsPlaying)
-                //    audioPlayer.StartMusicLooping();
-              
+            while (true)
+            {             
                 List<string> options = new List<string>() { "Hit", "Stand", "Double" };
                 string message = null;
                 ConsoleColor consoleColor = ConsoleColor.White;
@@ -55,24 +52,26 @@ namespace Blackjack_Projekt
                 do
                 {
                     Console.Clear();
-                    isEnded = CheckState(menu, gameStatus, player, dealer);
-                    if (isEnded)
+                    try
+                    {
+                        isRoundEnded = CheckState(menu, gameStatus, player, dealer);
+                    }
+                    catch(ArgumentOutOfRangeException e)
+                    {
+                        EndGame(menu, gameStatus, player);
+                        AppManager.SaveToRanking(gameStatus, player);
+                    }
+                    if (isRoundEnded)
                         break;
 
                     menu.ShowGameplayTitle(player, gameStatus);
-                    menu.ShowCardsHidden(player, dealer);
+                    menu.ShowCardsHidden(player, dealer);                       
 
-                    if (gameStatus.Deck.Count() == 0)
-                    {
-                        menu.WriteLineCenter("Deck is over. Hope you enjoy playing :)");
-                        AppManager.SaveToRanking(gameStatus, player);
-                        return;
-                    }
-                        
-
-                    if (message !=null)
+                    if (message != null)
                         menu.WriteLineCenter(message, consoleColor);
-                    menu.ShowMenuOptions(selectedOption, options);                   
+                    menu.ShowMenuOptions(selectedOption, options);
+                    Console.Write("\t Press S to save changes");
+                    menu.WriteLineRight("Press ESC to Exit          ");
                     keyEntered = menu.ReadKey();
 
                    
@@ -92,7 +91,7 @@ namespace Blackjack_Projekt
                     return;
                 }
                
-                if(!isEnded)
+                if(!isRoundEnded)
                 {
                     switch (selectedOption)
                     {
@@ -100,7 +99,7 @@ namespace Blackjack_Projekt
                             try
                             {
                                 player.AddToHand(gameStatus);
-                                isEnded = CheckState(menu, gameStatus, player, dealer);
+                                isRoundEnded = CheckState(menu, gameStatus, player, dealer);
                             }
                             catch (ArgumentOutOfRangeException e)
                             {
@@ -111,7 +110,7 @@ namespace Blackjack_Projekt
                             bool isPlayerBlackjack = player.Points == 21 ? true : false;
                             try
                             {
-                                isEnded = DealerMove(menu, gameStatus, player, dealer, isPlayerBlackjack);
+                                isRoundEnded = DealerMove(menu, gameStatus, player, dealer, isPlayerBlackjack);
                             }
                             catch (ArgumentOutOfRangeException e)
                             {
@@ -126,10 +125,10 @@ namespace Blackjack_Projekt
                                 {
                                     Console.WriteLine("You don't have enough money to double the bet");
                                 }
-                                isEnded = CheckState(menu, gameStatus, player, dealer);
-                                if (!isEnded)
+                                isRoundEnded = CheckState(menu, gameStatus, player, dealer);
+                                if (!isRoundEnded)
                                 {
-                                    isEnded = DealerMove(menu, gameStatus, player, dealer, false);
+                                    isRoundEnded = DealerMove(menu, gameStatus, player, dealer, false);
                                 }
                             }
                             catch (ArgumentOutOfRangeException e)
@@ -150,14 +149,14 @@ namespace Blackjack_Projekt
                     gameStatus.isGameEnded = false;
                     return;
                 }
-                if(isEnded)
+                if(isRoundEnded)
                 {                   
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                     if (gameStatus.getGameplayMusic() != "None")
                         audioPlayer.StartMusicLooping();
                     MakeBet(menu, gameStatus, player);
-                    isEnded = false;
+                    isRoundEnded = false;
                 }
             }
         }
@@ -270,8 +269,9 @@ namespace Blackjack_Projekt
                 Console.Clear();
 
                 menu.ShowGameplayTitle(player, gameStatus);
-                Console.WriteLine(messages[messageIndex]);
-                Console.WriteLine("Enter your bet: ");
+                menu.WriteLineCenter(messages[messageIndex]);
+                menu.WriteLineCenter("Enter your bet: ");
+                Console.SetCursorPosition((Console.WindowWidth - "Enter your bet: ".Length + 1) / 2, Console.CursorTop);
 
                 if (!decimal.TryParse(Console.ReadLine(), out decimal result))
                 {
@@ -332,6 +332,7 @@ namespace Blackjack_Projekt
 
             while (true)
             {
+                Console.Clear();
                 string[] optionsDates = { $"{dates[0]}", $"{dates[1]}", $"{dates[2]}" };
 
                 menu.ShowGameplayTitle(player, gameStatus);
@@ -461,7 +462,7 @@ namespace Blackjack_Projekt
                 if (keyEntered == ConsoleKey.Escape)
                     return;
 
-                if(mainTheme != null && mainTheme.IsPlaying)
+                if (mainTheme != null && mainTheme.IsPlaying)
                     mainTheme.StopMusic();
                 switch (selectedOption)
                 {                  
@@ -629,6 +630,7 @@ namespace Blackjack_Projekt
             {
                 Console.Clear();
                 List<RankingModel> rankings = AppManager.LoadFromRanking();
+                rankings = rankings.OrderByDescending(x => x.MoneyEarned).ToList();
                 menu.ShowTitle();
                 if (rankings.Count > 0)
                 {

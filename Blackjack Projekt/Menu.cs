@@ -31,12 +31,29 @@ namespace Blackjack_Projekt
         }
         public void ShowGameplayTitle(Player player, GameStatus gameStatus)
         {
+            string count = $"   Your Insurance Bet: {player.InsuranceBet}  " + $"Insurance Payment: {gameStatus.AvailableInsurancePayments[gameStatus.getInsurancePaymentIndex()]} " +
+                $"Cards Remaining: {gameStatus.Deck.Count}  ";
+            string space = "";
+            for (int i = count.Length; i < Console.WindowWidth - 1; i++)
+                space += " ";
+            string temp1 = "";
+            string temp2 = "";
+            string message1 = "Press S to save progress";
+            string message2 = "Press ESC to exit";
+            for (int i = 0; i<space.Length - 4 - message1.Length; i++)
+            {
+                temp1 += " ";
+            }
+            for (int i = 0; i < space.Length - 4 - message2.Length; i++)
+            {
+                temp2 += " ";
+            }
 
-            ConsoleTable consoleTable = new ConsoleTable("Blackjack", "", "");
-            consoleTable.AddRow("Player", "Rules", "Deck");
-            consoleTable.AddRow($"Your Money: {player.Money}", $"Dealer Limit: {gameStatus.getDealerLimit()}", $"Cards Remaining: {gameStatus.Deck.Count}");
-            consoleTable.AddRow($"Your Bet: {player.Bet}", $"Insurance Payment: {gameStatus.AvailableInsurancePayments[gameStatus.getInsurancePaymentIndex()]}", $"");
-            consoleTable.AddRow($"Your Insurance Bet: {player.InsuranceBet}", $"Win Payout: {gameStatus.AvailableWinPayouts[gameStatus.getWinPayoutIndex()]}", "");
+            ConsoleTable consoleTable = new ConsoleTable("Blackjack", "", "", "");
+            consoleTable.AddRow("Player", "Rules", "Deck", space);
+            consoleTable.AddRow($"Your Money: {player.Money}", $"Dealer Limit: {gameStatus.getDealerLimit()}", $"Cards Remaining: {gameStatus.Deck.Count}", temp1 + message1);
+            consoleTable.AddRow($"Your Bet: {player.Bet}", $"Insurance Payment: {gameStatus.AvailableInsurancePayments[gameStatus.getInsurancePaymentIndex()]}", "", "");
+            consoleTable.AddRow($"Your Insurance Bet: {player.InsuranceBet}", $"Win Payout: {gameStatus.AvailableWinPayouts[gameStatus.getWinPayoutIndex()]}", "", temp2 + message2);
             consoleTable.Write(Format.Minimal);
 
         }

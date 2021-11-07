@@ -172,12 +172,11 @@ namespace Blackjack_Projekt_Logic_Layer
             };
 
             rankings.Add(ranking);
-            string rankingsSerialized = JsonConvert.SerializeObject(rankings);
+            string rankingsSerialized = JsonConvert.SerializeObject(rankings, Formatting.Indented);
             File.WriteAllText(pathJson, rankingsSerialized);
         }
         public static List<RankingModel> LoadFromRanking()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
             string pathJson = getPath("RankingFile/Ranking.json");
             List<RankingModel> rankings = isAnyEntry(pathJson);
             return rankings;
@@ -196,6 +195,11 @@ namespace Blackjack_Projekt_Logic_Layer
             List<RankingModel> rankings = new List<RankingModel>();
             rankings = JsonConvert.DeserializeObject<List<RankingModel>>(File.ReadAllText(pathJson), jsonSettings);
             return rankings;
+        }
+        public static void ClearRanking()
+        {
+            string jsonPath = getPath("RankingFile/Ranking.json");
+            File.WriteAllText(jsonPath, "[]");
         }
         public static string getPath(string filePath)
         {

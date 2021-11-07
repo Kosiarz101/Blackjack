@@ -424,7 +424,8 @@ namespace Blackjack_Projekt
                         break;
                     case 5:
                         Console.Clear();
-                        Exit(menu);
+                        if (Exit(menu, "Are you sure want to exit?"))
+                            Environment.Exit(0);
                         break;
 
 
@@ -631,13 +632,15 @@ namespace Blackjack_Projekt
         {
             ConsoleKey consoleKey;
             do
+            
             {
                 Console.Clear();
-                List<RankingModel> rankings = AppManager.LoadFromRanking();
-                rankings = rankings.OrderByDescending(x => x.MoneyEarned).ToList();
+                List<RankingModel> rankings = AppManager.LoadFromRanking();               
                 menu.ShowTitle();
+                menu.WriteLineCenter("Press C to clear ranking\n", ConsoleColor.Gray);
                 if (rankings.Count > 0)
                 {
+                    rankings = rankings.OrderByDescending(x => x.MoneyEarned).ToList();
                     foreach (RankingModel ranking in rankings)
                     {
                         menu.WriteLineCenter("Money Earned: " + ranking.MoneyEarned.ToString());
@@ -648,12 +651,18 @@ namespace Blackjack_Projekt
                 }
                 else
                 {
-                    menu.WriteLineCenter("You haven't play any round yet");
+                    menu.WriteLineCenter("You haven't play any games yet");
                 }
                 consoleKey = menu.ReadKey();
-            } while (consoleKey != ConsoleKey.Escape);                       
+            } while (consoleKey != ConsoleKey.Escape && consoleKey != ConsoleKey.C);
+
+            if (ConsoleKey.C == consoleKey)
+            {
+                if (Exit(menu, "Are you sure you want to Clear Ranking?"))
+                    AppManager.ClearRanking();
+            }
         }
-        public static void Exit(Menu menu)
+        public static bool Exit(Menu menu, string message)
         {
             string[] options = { "yes", "no" };
             int selectedOption = 0;
@@ -661,13 +670,14 @@ namespace Blackjack_Projekt
             Dictionary<string, int> consoleSize = new Dictionary<string, int> { { "Width", Console.WindowWidth }, { "Height", Console.WindowHeight } };
             ConsoleKey keyEntered;
 
+            Console.Clear();
             menu.ShowTitle();
             cursorPosition = Console.CursorTop;
             do
             {
                 consoleSize = menu.CheckConsoleSizeMainMenu(consoleSize);
                 Console.SetCursorPosition(Console.CursorLeft, cursorPosition);               
-                menu.WriteLineCenter("Are you sure you want to exit?");
+                menu.WriteLineCenter(message);
                 menu.ShowMenuOptions(selectedOption, options);
 
                 keyEntered = menu.ReadKey();
@@ -677,17 +687,17 @@ namespace Blackjack_Projekt
 
             if (keyEntered == ConsoleKey.Escape)
             {
-                return;
+                return false;
             }
 
             switch (selectedOption)
             {
                 case 0:
-                    Environment.Exit(0);
-                    break;
+                    return true;
                 case 1:
-                    return;
+                    return false;
             }
+            return false;
         }
     }
         

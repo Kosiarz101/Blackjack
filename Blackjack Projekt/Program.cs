@@ -71,8 +71,6 @@ namespace Blackjack_Projekt
                     if (message != null)
                         menu.WriteLineCenter(message, consoleColor);
                     menu.ShowMenuOptions(selectedOption, options);
-                    Console.Write("\t Press S to save changes");
-                    menu.WriteLineRight("Press ESC to Exit          ");
                     keyEntered = menu.ReadKey();
 
                    

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blackjack Projekt", "Blackj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blackjack Projekt Logic Layer", "..\Blackjack Projekt Logic Layer\Blackjack Projekt Logic Layer.csproj", "{35F1467E-8BED-49AF-81A2-E10F08E1334A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "..\Setup1\Setup1.vdproj", "{D8CD43B6-AB94-4AAD-BD90-E40CC5DF9039}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{35F1467E-8BED-49AF-81A2-E10F08E1334A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35F1467E-8BED-49AF-81A2-E10F08E1334A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35F1467E-8BED-49AF-81A2-E10F08E1334A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CD43B6-AB94-4AAD-BD90-E40CC5DF9039}.Debug|Any CPU.ActiveCfg = Debug
+		{D8CD43B6-AB94-4AAD-BD90-E40CC5DF9039}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

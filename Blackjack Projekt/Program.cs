@@ -80,7 +80,7 @@ namespace Blackjack_Projekt
                         SaveGame(menu, gameStatus, player, dealer);
                     selectedOption = menu.CheckArrowKeyVertical(keyEntered, selectedOption, options);
 
-                } while (keyEntered != ConsoleKey.Enter && keyEntered != ConsoleKey.S && keyEntered != ConsoleKey.Escape);  
+                } while (keyEntered != ConsoleKey.Enter && keyEntered != ConsoleKey.Escape);  
                 
                 if(keyEntered == ConsoleKey.Escape)
                 {

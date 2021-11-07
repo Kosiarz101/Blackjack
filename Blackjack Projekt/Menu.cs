@@ -301,16 +301,42 @@ namespace Blackjack_Projekt
             }
             return selectedOption;
         }
+        public Dictionary<string, int> CheckConsoleSizeMainMenu(Dictionary<string, int> consoleSize)
+        {
+            if (Console.WindowWidth != consoleSize["Width"] || Console.WindowHeight != consoleSize["Height"])
+            {
+                Console.Clear();
+                ShowTitle();
+                consoleSize["Width"] = Console.WindowWidth;
+                consoleSize["Height"] = Console.WindowHeight;
+            }
+            return consoleSize;
+        }
+        public Dictionary<string, int> CheckConsoleSizeGameplay(Dictionary<string, int> consoleSize, GameStatus gameStatus, Player player)
+        {
+            if (Console.WindowWidth != consoleSize["Width"] || Console.WindowHeight != consoleSize["Height"])
+            {
+                Console.Clear();
+                ShowGameplayTitle(player, gameStatus);
+                consoleSize["Width"] = Console.WindowWidth;
+                consoleSize["Height"] = Console.WindowHeight;
+            }
+            return consoleSize;
+        }
         public void WriteLineCenter(string message, ConsoleColor consoleColor = ConsoleColor.White)
         {
             Console.ForegroundColor = consoleColor;
-            Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+            int position = (Console.WindowWidth - message.Length) / 2;
+            position = (position<0) ? 0:position;
+            Console.SetCursorPosition(position, Console.CursorTop);
             Console.WriteLine(message);
             Console.ResetColor();
         }
         public void WriteLineRight(string message)
         {
-            Console.SetCursorPosition((Console.WindowWidth - message.Length + 1), Console.CursorTop);
+            int position = (Console.WindowWidth - message.Length + 1);
+            position = (position < 0) ? 0 : position;
+            Console.SetCursorPosition(position, Console.CursorTop);
             Console.WriteLine(message);
         }
         public ConsoleKey ReadKey()

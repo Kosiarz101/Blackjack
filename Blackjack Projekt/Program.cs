@@ -15,7 +15,6 @@ namespace Blackjack_Projekt
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
             Menu menu = new Menu();
             GameStatus gameStatus = new GameStatus();
 
@@ -59,7 +58,7 @@ namespace Blackjack_Projekt
                     }
                     catch(ArgumentOutOfRangeException e)
                     {
-                        EndGame(menu, gameStatus, player);
+                        EndGame(menu, gameStatus, player, "Deck is over. Hope you enjoy playing :)\n");
                         AppManager.SaveToRanking(gameStatus, player);
                     }
                     if (isRoundEnded)
@@ -73,13 +72,14 @@ namespace Blackjack_Projekt
                     menu.ShowMenuOptions(selectedOption, options);
                     keyEntered = menu.ReadKey();
 
-                   
+                   //Save game
                     if (keyEntered == ConsoleKey.S)
                         SaveGame(menu, gameStatus, player, dealer);
                     selectedOption = menu.CheckArrowKeyVertical(keyEntered, selectedOption, options);
 
                 } while (keyEntered != ConsoleKey.Enter && keyEntered != ConsoleKey.Escape);  
                 
+                //Exit Game
                 if(keyEntered == ConsoleKey.Escape)
                 {
                     if (ExitGame(menu, gameStatus, player, dealer))
@@ -102,7 +102,7 @@ namespace Blackjack_Projekt
                             }
                             catch (ArgumentOutOfRangeException e)
                             {
-                                EndGame(menu, gameStatus, player);
+                                EndGame(menu, gameStatus, player, "Deck is over. Hope you enjoy playing :)\n");
                             }                           
                             break;
                         case 1:
@@ -113,7 +113,7 @@ namespace Blackjack_Projekt
                             }
                             catch (ArgumentOutOfRangeException e)
                             {
-                                EndGame(menu, gameStatus, player);
+                                EndGame(menu, gameStatus, player, "Deck is over. Hope you enjoy playing :)\n");
                             }                           
                             break;
                         case 2:
@@ -132,7 +132,7 @@ namespace Blackjack_Projekt
                             }
                             catch (ArgumentOutOfRangeException e)
                             {
-                                EndGame(menu, gameStatus, player);
+                                EndGame(menu, gameStatus, player, "Deck is over. Hope you enjoy playing :)\n");
                             }
                             break;
                         case 3:
@@ -143,7 +143,9 @@ namespace Blackjack_Projekt
                             break;
                     }
                 }
-                if(gameStatus.isGameEnded)
+                if (player.Money == 0)
+                    EndGame(menu, gameStatus, player, "You have no money to play further. Hope you enjoy playing so far :)");
+                if (gameStatus.isGameEnded)
                 {
                     gameStatus.isGameEnded = false;
                     return;
@@ -153,7 +155,7 @@ namespace Blackjack_Projekt
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                     if (gameStatus.getGameplayMusic() != "None")
-                        audioPlayer.StartMusicLooping();
+                        audioPlayer.StartMusicLooping();                   
                     MakeBet(menu, gameStatus, player);
                     isRoundEnded = false;
                 }
@@ -224,10 +226,7 @@ namespace Blackjack_Projekt
         }
         public static void CheckFinalState(Menu menu, GameStatus gameStatus, Player player, Dealer dealer, bool isPlayerBlackjack)
         {
-            int multiplier = isPlayerBlackjack ? 2 : 1;
-
-            try
-            {
+                int multiplier = isPlayerBlackjack ? 2 : 1;
                 //Player Win
                 if (dealer.Points > 21 || dealer.Points < player.Points)
                 {
@@ -251,12 +250,7 @@ namespace Blackjack_Projekt
                         menu.ShowBlackjackDrawScreen();
                     else
                         menu.ShowDrawScreen();
-                }
-            } catch (ArgumentOutOfRangeException e)
-            {
-                EndGame(menu, gameStatus, player);
-            }
-                                                           
+                }                                                          
         }
         public static void MakeBet(Menu menu, GameStatus gameStatus, Player player)
         {
@@ -313,9 +307,9 @@ namespace Blackjack_Projekt
                 break;
             }
         }
-        public static void EndGame(Menu menu, GameStatus gameStatus, Player player)
+        public static void EndGame(Menu menu, GameStatus gameStatus, Player player, string message)
         {
-            menu.WriteLineCenter("Deck is over. Hope you enjoy playing :)\n");
+            menu.WriteLineCenter(message);
             gameStatus.isGameEnded = true;
             AppManager.SaveToRanking(gameStatus, player);
             Console.ReadKey();
@@ -327,6 +321,7 @@ namespace Blackjack_Projekt
             string[] options = { "Save Slot 1", "Save Slot 2", "Save Slot 3" };           
             int selectedOption = 0;
             int cursorPosition;
+            Dictionary<string, int> consoleSize = new Dictionary<string, int> { { "Width", Console.WindowWidth }, { "Height", Console.WindowHeight } };
             ConsoleKey keyEntered;
 
             while (true)
@@ -338,6 +333,7 @@ namespace Blackjack_Projekt
                 cursorPosition = Console.CursorTop;
                 do
                 {
+                    consoleSize = menu.CheckConsoleSizeGameplay(consoleSize, gameStatus, player);
                     Console.SetCursorPosition(Console.CursorLeft, cursorPosition);
                     menu.ShowSaveFileOptions(selectedOption, options, optionsDates);
 
@@ -363,7 +359,6 @@ namespace Blackjack_Projekt
                         Console.Clear();
                         AppManager.SaveFile(gameStatus, player, dealer, 2);
                         break;
-
                 }
             }
         }
@@ -374,15 +369,17 @@ namespace Blackjack_Projekt
             string[] options = { "Play", "Load", "Options", "Ranking", "Credits", "Exit" };
             int selectedOption = 0;
             int cursorPosition = Console.CursorTop;
+            Dictionary<string, int> consoleSize = new Dictionary<string, int> { { "Width", Console.WindowWidth }, { "Height", Console.WindowHeight } };
             ConsoleKey keyEntered;         
 
             while (true)
             {
                 if(!mainTheme.IsPlaying)
                     mainTheme.StartMusic();
-                
+
                 Console.Clear();
                 menu.ShowTitle();
+
                 cursorPosition = Console.CursorTop;
 
                 List<Card> deck = AppManager.CreateDeck(gameStatus.getDeckQuantity());
@@ -392,6 +389,7 @@ namespace Blackjack_Projekt
 
                 do
                 {
+                    consoleSize = menu.CheckConsoleSizeMainMenu(consoleSize);
                     Console.SetCursorPosition(Console.CursorLeft, cursorPosition);
                     menu.ShowMenuOptions(selectedOption, options);
 
@@ -440,6 +438,8 @@ namespace Blackjack_Projekt
             bool isChosen = false;
             int selectedOption = 0;
             int cursorPosition = Console.CursorTop;
+            Dictionary<string, int> consoleSize = new Dictionary<string, int> { { "Width", Console.WindowWidth }, { "Height", Console.WindowHeight } };
+
             ConsoleKey keyEntered;
 
             while (!isChosen)
@@ -450,6 +450,7 @@ namespace Blackjack_Projekt
                 cursorPosition = Console.CursorTop;
                 do
                 {
+                    consoleSize = menu.CheckConsoleSizeMainMenu(consoleSize);
                     Console.SetCursorPosition(Console.CursorLeft, cursorPosition);
                     menu.ShowSaveFileOptions(selectedOption, options, optionsDates);
 
@@ -488,13 +489,17 @@ namespace Blackjack_Projekt
         {
             string[] options = { "yes", "no" };
             int selectedOption = 0;
+            int cursorPosition;
             ConsoleKey keyEntered;
+            Dictionary<string, int> consoleSize = new Dictionary<string, int> { { "Width", Console.WindowWidth }, { "Height", Console.WindowHeight } };
 
+            Console.Clear();
+            menu.ShowTitle();
+            cursorPosition = Console.CursorTop;
             do
             {
-                Console.Clear();
-                Console.SetCursorPosition(Console.CursorLeft, 0);
-                menu.ShowTitle();
+                consoleSize = menu.CheckConsoleSizeMainMenu(consoleSize);
+                Console.SetCursorPosition(Console.CursorLeft, cursorPosition);
                 menu.WriteLineCenter("Do you want to save your current progress?");
                 menu.ShowMenuOptions(selectedOption, options);
 
@@ -652,12 +657,16 @@ namespace Blackjack_Projekt
         {
             string[] options = { "yes", "no" };
             int selectedOption = 0;
+            int cursorPosition;
+            Dictionary<string, int> consoleSize = new Dictionary<string, int> { { "Width", Console.WindowWidth }, { "Height", Console.WindowHeight } };
             ConsoleKey keyEntered;
 
+            menu.ShowTitle();
+            cursorPosition = Console.CursorTop;
             do
             {
-                Console.SetCursorPosition(Console.CursorLeft, 0);
-                menu.ShowTitle();
+                consoleSize = menu.CheckConsoleSizeMainMenu(consoleSize);
+                Console.SetCursorPosition(Console.CursorLeft, cursorPosition);               
                 menu.WriteLineCenter("Are you sure you want to exit?");
                 menu.ShowMenuOptions(selectedOption, options);
 

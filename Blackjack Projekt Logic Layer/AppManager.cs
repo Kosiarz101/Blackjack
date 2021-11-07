@@ -16,7 +16,7 @@ namespace Blackjack_Projekt_Logic_Layer
             Random random = new Random();
 
             string[] cardList = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "as" };
-            string[] cardListDeck = new string[cardList.Length * quantity * 1];
+            string[] cardListDeck = new string[cardList.Length * quantity * 4];
             int j = cardList.Length - 1;
 
             for (int i = 0; i < cardListDeck.Length; i++)

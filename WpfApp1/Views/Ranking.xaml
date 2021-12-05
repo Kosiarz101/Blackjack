@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfApp1.Views.Ranking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        Title="Ranking" Height="600" Width="900" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid" Background="#FF0A1F30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <TextBlock Name="StackP1tb1" Text="23"/>
+            <TextBlock Name="StackP1tb2" Text="23"/>
+            <TextBlock Name="StackP1tb3" Text="23"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <TextBlock Name="StackP2tb1" Text="23"/>
+            <TextBlock Name="StackP2tb2" Text="23"/>
+            <TextBlock Name="StackP2tb3" Text="23"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <TextBlock Name="StackP3tb1" Text="23"/>
+            <TextBlock Name="StackP3tb2" Text="23"/>
+            <TextBlock Name="StackP3tb3" Text="23"/>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <TextBlock Name="StackP4tb1" Text="23"/>
+            <TextBlock Name="StackP4tb2" Text="23"/>
+            <TextBlock Name="StackP4tb3" Text="23"/>
+        </StackPanel>
+        <Button x:Name="bReturn" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonPlay}" IsCancel="True" Background="#FF53539C" Click="Return_Button_Click" FontSize="16">
+            <TextBlock Text="&lt;&lt; Return"></TextBlock>
+        </Button>
+        <Button x:Name="bLeft" Grid.Column="1" Grid.Row="8" Style="{StaticResource ButtonPlay}" IsDefault="True" Background="#FF53539C" Click="Left_Button_Click" FontSize="16">
+            <TextBlock Text="&lt;&lt;"></TextBlock>
+        </Button>
+        <Button x:Name="bRight" Grid.Column="3" Grid.Row="8" Style="{StaticResource ButtonPlay}" IsDefault="True" Background="#FF53539C" Click="Right_Button_Click" FontSize="16">
+            <TextBlock Text="&gt;&gt;"></TextBlock>
+        </Button>
+        <Button Name="bSaveSlot3" Style="{StaticResource ButtonLoadGame}" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="Clear_Button_Click" Cursor="Hand">
+            <TextBlock Text="Press to clear all ranking's records" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="LightGray"></TextBlock>
+        </Button>
+    </Grid>
+</Window>

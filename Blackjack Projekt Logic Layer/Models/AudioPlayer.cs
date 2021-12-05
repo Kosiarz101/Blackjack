@@ -36,6 +36,7 @@ namespace Blackjack_Projekt_Logic_Layer.Models
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds");
             string finalPath = Path.Combine(path, fileName);
             Player.SoundLocation = finalPath;
+            IsPlaying = true;
             Player.Play();
         }
         public void StopMusic()

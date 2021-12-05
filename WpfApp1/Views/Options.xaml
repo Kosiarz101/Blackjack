@@ -1,0 +1,108 @@
+﻿<Window x:Class="WpfApp1.Views.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        Title="Options" Height="600" Width="900">
+     <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Hint">
+            <Setter Property="Foreground" Value="#9494b8"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid" Background="#FF0A1F30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="0"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="tbOption1" Grid.Row="1" Grid.Column="1" Text="Dealer Limit" VerticalAlignment="Center"/>
+        <Slider x:Name="slOption1" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="slOption1_ValueChanged" SmallChange="1"  TickPlacement="TopLeft" Cursor="Hand" Background="#00991F1F"/>
+        <TextBlock x:Name="tbOption11" Grid.Row="1" Grid.Column="5" Text="17" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbOption1Hint" Style="{StaticResource Hint}" Grid.Row="2" Grid.Column="1" Text="The limit above which dealer won't hit" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+
+        <TextBlock x:Name="tbOption2" Grid.Row="3" Grid.Column="1" Text="Deck Quantity" VerticalAlignment="Center"/>
+        <Slider x:Name="slOption2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="slOption2_ValueChanged" SmallChange="1"  TickPlacement="TopLeft" Cursor="Hand" Background="#00991F1F"/>
+        <TextBlock x:Name="tbOption22" Grid.Row="3" Grid.Column="5" Text="xxx" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbOption2Hint" Style="{StaticResource Hint}" Grid.Row="4" Grid.Column="1" Text="The number of decks that will be played" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+
+        <TextBlock x:Name="tbOption3" Grid.Row="5" Grid.Column="1" Text="Insurance Payment" VerticalAlignment="Center"/>
+        <Slider x:Name="slOption3" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="slOption3_ValueChanged" SmallChange="1"  TickPlacement="TopLeft" Cursor="Hand" Background="#00991F1F"/>
+        <TextBlock x:Name="tbOption33" Grid.Row="5" Grid.Column="5" Text="xxx" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbOption3Hint" Style="{StaticResource Hint}" Grid.Row="6" Grid.Column="1" Text="Ratio of money which player gets when player pay insurance and dealer gets blackjack" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+
+        <TextBlock x:Name="tbOption4" Grid.Row="7" Grid.Column="1" Text="Win Payout" VerticalAlignment="Center"/>
+        <Slider x:Name="slOption4" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="slOption4_ValueChanged" SmallChange="1"  TickPlacement="TopLeft" Cursor="Hand" Background="#00991F1F"/>
+        <TextBlock x:Name="tbOption44" Grid.Row="7" Grid.Column="5" Text="xxx" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbOption4Hint" Style="{StaticResource Hint}" Grid.Row="8" Grid.Column="1" Text="Ratio of money which player gets when player wins" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+
+        <TextBlock x:Name="tbOption5" Grid.Row="9" Grid.Column="1" Text="Initial Money" VerticalAlignment="Center"/>
+        <TextBox x:Name="tboxOption5" Grid.Row="9" Grid.Column="3" FontSize="25" TextChanged="Text_Changed_Initial_Money">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBlock x:Name="tbOption55" Grid.Row="9" Grid.Column="5" Text="xxx" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbOption5Hint" Style="{StaticResource Hint}" Grid.Row="10" Grid.Column="1" Text="The value of initial money" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+
+        <TextBlock x:Name="tbOption6" Grid.Row="11" Grid.Column="1" Text="Gameplay Music" VerticalAlignment="Center"/>
+        <Grid Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="bOption6Left" Style="{StaticResource ButtonGameplayMusic}" Content="&lt;&lt;" Grid.Row="1" Grid.Column="0" Click="bOption6Left_Click" VerticalAlignment="Center" Background="#FF53539C" Foreground="White"/>
+            <Button x:Name="bOption6" Style="{StaticResource ButtonLoadGame}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalContentAlignment="Center" Click="bOption6_Click">
+                <TextBlock x:Name="tbOption66" Text="Gameplay" VerticalAlignment="Center"/>
+            </Button>
+            <Button x:Name="bOption6Right" Style="{StaticResource ButtonGameplayMusic}" Content="&gt;&gt;" Grid.Row="1" Grid.Column="4" Click="bOption6Right_Click" VerticalAlignment="Center" Background="#FF53539C" Foreground="White"/>
+        </Grid>
+        <TextBlock x:Name="tbOption6Hint" Style="{StaticResource Hint}" Grid.Row="12" Grid.Column="1" Text="Music that will be played during gameplay. PRESS E TO HEAR PREVIEW" VerticalAlignment="Center" Grid.ColumnSpan="3" />
+
+        <Button x:Name="bSave" Grid.Column="2" Grid.Row="14" Style="{StaticResource ButtonPlay}" IsDefault="True" Background="#FF53539C" Click="Save_Button_Click" FontSize="16">
+            <TextBlock Text="Save"></TextBlock>
+        </Button>
+        <Button x:Name="bReturn" Grid.Column="1" Grid.Row="14" Style="{StaticResource ButtonPlay}" IsCancel="True" Background="#FF53539C" Click="Return_Button_Click" FontSize="16">
+            <TextBlock Text="&lt;&lt; Return"></TextBlock>
+        </Button>
+        <TextBlock x:Name="tbInfo" Grid.Row="13" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="LightGreen" Grid.ColumnSpan="3"/>
+    </Grid>
+</Window>

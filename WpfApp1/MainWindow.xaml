@@ -46,8 +46,6 @@
             <TextBlock Text="Exit" TextAlignment="Center" VerticalAlignment="Center"/>
         </Button>
         <Image Grid.ColumnSpan="5" Margin="22,15,24.034,24" Source="Images/BlackJacklogo.png" Stretch="Fill" Grid.Column="1" Grid.RowSpan="2"/>
-        <DocumentViewer HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <DocumentViewer HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
     <Window.Resources>
         <!--<DataTemplate x:Name="OptionsViewModel" DataType="{x:Type ViewModels:OptionsViewModel}">
